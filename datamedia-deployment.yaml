@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: datamedia
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: datamedia
+  template:
+    metadata:
+      labels:
+        app: datamedia
+    spec:
+      containers:
+        - name: datamedia
+          image: jesusalejandrotm12/datamedia:latest
+          ports:
+            - containerPort: 3000
+          envFrom:
+            - configMapRef:
+                name: datamedia-env
+          volumeMounts:
+            - name: datamedia-volume
+              mountPath: /app
+              
+      volumes:
+        - name: datamedia-volume
+          hostPath:
+            path: /home/alejo/dev/SAE6/DataMedia
+            type: Directory
