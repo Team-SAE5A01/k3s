@@ -239,38 +239,4 @@ kubectl -n wheeltrip delete -f .
 kubectl delete namespace wheeltrip
 ```
 
----
-
-## Pour aller plus loin (prod)
-
-- Externaliser les secrets (SOPS, KMS, CSI driver).
-- Ajouter ressources (CPU/mémoire) et probes (liveness/readiness).
-- Backups MySQL (Velero, CronJob `mysqldump`).
-- Ingress + TLS (cert‑manager).
-- Autoscaling (HPA).
-- Monitoring (Prometheus/Grafana) + logs centralisés.
-
----
-
-## Aide base64
-
-```bash
-echo -n "valeur" | base64
-echo -n "dmFsZXVy" | base64 -d
-```
-
----
-
-## One‑liners utiles
-
-```bash
-# Pods non prêts
-kubectl -n wheeltrip get pods | awk 'NR==1 || $3!="Running" || $2!=$4'
-
-# Suivre les events
-kubectl -n wheeltrip get events --watch
-
-# Pods par label
-kubectl -n wheeltrip get pods -l app=wheeltrip-user
-```
 
